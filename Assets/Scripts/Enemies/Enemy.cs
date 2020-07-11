@@ -12,8 +12,15 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     protected float rotationalSpeed = 1;
+    
+    [SerializeField]
+    protected float viewRange = 10;
+
+    [SerializeField]
+    protected float fieldOfView = 20;
 
     protected float direction;
+
 
     private void Start()
     {
@@ -28,10 +35,26 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        IsHostile();
         if (state == State.Passive)
         {
             PassiveState();
         }
+    }
+
+    protected bool IsHostile()
+    {
+        Vector2 player = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (Vector2.Distance(transform.position, player) > viewRange)
+        {
+            return false;
+        }
+        float angleToPlayer = AngleToTarget(player);
+        if ((angleToPlayer + fieldOfView) < (direction + (2 * fieldOfView)) && (angleToPlayer + fieldOfView) > (direction))
+        {
+            return true;
+        }
+        return false;
     }
 
     protected void FaceDirection(float target)
@@ -42,8 +65,7 @@ public class Enemy : MonoBehaviour
 
     protected void MoveToPoint(Vector2 target)
     {
-        Vector2 v2 = target - (Vector2) transform.position;
-        float angleToTarget = Mathf.Atan2(v2.y, v2.x) * Mathf.Rad2Deg;
+        float angleToTarget = AngleToTarget(target);
         if (angleToTarget == direction)
         {
             transform.position = Vector2.MoveTowards(transform.position, target, movementSpeed);
@@ -52,5 +74,11 @@ public class Enemy : MonoBehaviour
         {
             FaceDirection(angleToTarget);
         }
+    }
+
+    protected float AngleToTarget(Vector2 target)
+    {
+        Vector2 diff = target - (Vector2)transform.position;
+        return Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
     }
 }
