@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class BurstRifle : Weapon
 {
-    private int bulletNumber = 2;
+    [SerializeField]
+    private int extraShots = 1;
+
+    private int bulletNumber;
 
     private float lowestSpray;
     private void Start()
     {
         lowestSpray = spray;
+        bulletNumber = extraShots;
     }
+
     public override void Fire()
     {
         if (weaponCooldown < 1)
@@ -24,7 +29,7 @@ public class BurstRifle : Weapon
                 return;
             }
             weaponCooldown = weaponRate;
-            bulletNumber = 2;
+            bulletNumber = extraShots;
             spray = lowestSpray;
         }
     }

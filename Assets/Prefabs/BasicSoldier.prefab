@@ -137,9 +137,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7476174410858514452}
-  - component: {fileID: 7476174410858514455}
+  - component: {fileID: 3837215102815209039}
   m_Layer: 0
-  m_Name: Pistol
+  m_Name: Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,7 +159,7 @@ Transform:
   m_Father: {fileID: 7476174412146193129}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7476174410858514455
+--- !u!114 &3837215102815209039
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,14 +168,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7476174410858514453}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8541283f8d9df4443b7fc1088e12c10d, type: 3}
+  m_Script: {fileID: 11500000, guid: d68764d99f2f5c047a3be1ae8ae7bb09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletType: {fileID: 4829568597716269542, guid: ea94f0583e0fdf9479dac4d6538a5619,
+  bulletType: {fileID: 3162601737660159029, guid: 8be44e9d85708964abb6d5ca69ea671f,
     type: 3}
-  weaponRate: 100
-  spray: 5
-  attackRange: 15
+  weaponRate: 110
+  spray: 8
+  attackRange: 13
 --- !u!1 &7476174411632230529
 GameObject:
   m_ObjectHideFlags: 0
