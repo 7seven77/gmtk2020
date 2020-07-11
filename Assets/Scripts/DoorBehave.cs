@@ -10,8 +10,6 @@ public class DoorBehave : MonoBehaviour
     {
         doorAnim = this.GetComponent<Animator>();
     }
-
-
     protected bool GetRelativePosition(Vector3 playerPos)
     {
         float difference = playerPos.x - transform.position.x;
