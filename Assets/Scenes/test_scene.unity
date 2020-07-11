@@ -355,9 +355,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1217532149}
-  - component: {fileID: 1217532150}
   - component: {fileID: 1217532151}
   - component: {fileID: 1217532152}
+  - component: {fileID: 1217532150}
   m_Layer: 0
   m_Name: BrownDoor
   m_TagString: Untagged
@@ -389,7 +389,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1217532148}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3939f412ef29d9347b01e4afa2dd2443, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ebb42fc486be5b4791e394565a75259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!61 &1217532151
@@ -570,6 +570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858264c8f14a6d4e8231dbdb31dc383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasKey: 0
 --- !u!1 &1313568212
 GameObject:
   m_ObjectHideFlags: 0
