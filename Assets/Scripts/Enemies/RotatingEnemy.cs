@@ -13,8 +13,23 @@ public class RotatingEnemy : Enemy
     float turnTimer = 0;
 
     int currentDirection = 0;
+
+    private Vector2 startingPosition;
+
+    protected void Start()
+    {
+        base.Start();
+        startingPosition = transform.position;
+    }
+
     protected override void PassiveState()
     {
+        if ((Vector2)transform.position != startingPosition)
+        {
+            MoveToPoint(startingPosition);
+            return;
+        }
+
         if (turnTimer == 0)
         {
             currentDirection = (currentDirection + 1) % directionList.Count;

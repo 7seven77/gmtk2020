@@ -12,6 +12,7 @@ public class PatrollingEnemy : Enemy
     // Start is called before the first frame update
     void Start()
     {
+        base.Start();
         currentPathPoint = 0;
     }
 
