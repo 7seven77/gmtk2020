@@ -19,6 +19,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected float fieldOfView = 20;
 
+    [SerializeField]
+    protected float attackRange = 1;
+
     protected float direction;
 
     protected virtual void PassiveState()
@@ -79,18 +82,27 @@ public class Enemy : MonoBehaviour
     protected void HostileState()
     {
         Vector2 player = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (Vector2.Distance(transform.position, player) < attackRange)
+        {
+            FaceDirection(AngleToTarget(player));
+            return;
+        }
         MoveToPoint(player);
     }
 
     protected bool IsHostile()
     {
         Vector2 player = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (Vector2.Distance(transform.position, player) < 1)
+        {
+            return true;
+        }
         if (Vector2.Distance(transform.position, player) > viewRange)
         {
             return false;
         }
         float angleToPlayer = AngleToTarget(player);
-        if (Mathf.DeltaAngle(direction, angleToPlayer) < (fieldOfView * 0.5f)) 
+        if (Mathf.Abs(Mathf.DeltaAngle(direction, angleToPlayer)) < (fieldOfView * 0.5f)) 
         {
             return true;
         }

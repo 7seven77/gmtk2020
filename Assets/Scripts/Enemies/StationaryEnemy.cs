@@ -12,7 +12,7 @@ public class StationaryEnemy : Enemy
         startingPosition = transform.position;
     }
 
-    protected virtual void PassiveState()
+    protected override void PassiveState()
     {
         if ((Vector2)transform.position != startingPosition)
         {

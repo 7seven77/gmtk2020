@@ -156,6 +156,7 @@ MonoBehaviour:
   rotationalSpeed: 5
   viewRange: 18
   fieldOfView: 20
+  attackRange: 5
   patrolPath:
   - {x: 0, y: 0}
   - {x: 10, y: 0}
@@ -792,6 +793,7 @@ MonoBehaviour:
   rotationalSpeed: 5
   viewRange: 10
   fieldOfView: 50
+  attackRange: 6
   patrolPath:
   - {x: -11, y: -2}
   - {x: -10, y: -2}
@@ -1093,6 +1095,7 @@ MonoBehaviour:
   rotationalSpeed: 1
   viewRange: 10
   fieldOfView: 30
+  attackRange: 2
   directionList:
   - 45
   - 180
@@ -1705,10 +1708,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  movementSpeed: 1
+  movementSpeed: 0.05
   rotationalSpeed: 1
   viewRange: 10
-  fieldOfView: 20
+  fieldOfView: 25
+  attackRange: 7
 --- !u!212 &2082057950
 SpriteRenderer:
   m_ObjectHideFlags: 0
