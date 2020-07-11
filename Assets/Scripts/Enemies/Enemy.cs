@@ -8,19 +8,16 @@ public class Enemy : MonoBehaviour
     protected State state = State.Passive;
 
     [SerializeField]
-    protected float movementSpeed = 1;
+    protected float movementSpeed = 0.05f;
 
     [SerializeField]
     protected float rotationalSpeed = 1;
     
     [SerializeField]
-    protected float viewRange = 10;
+    protected float viewRange = 20;
 
     [SerializeField]
-    protected float fieldOfView = 20;
-
-    [SerializeField]
-    protected float attackRange = 1;
+    protected float fieldOfView = 35;
 
     protected float direction;
 
@@ -97,7 +94,7 @@ public class Enemy : MonoBehaviour
     protected void HostileState()
     {
         Vector2 player = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (Vector2.Distance(transform.position, player) < attackRange)
+        if (Vector2.Distance(transform.position, player) < transform.GetComponentInChildren<Weapon>().GetAttackRange())
         {
             FaceDirection(AngleToTarget(player));
             if (Mathf.Abs(Mathf.DeltaAngle(direction, AngleToTarget(player))) < 5)

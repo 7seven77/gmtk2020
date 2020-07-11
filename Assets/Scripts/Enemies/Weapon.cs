@@ -10,10 +10,13 @@ public abstract class Weapon : MonoBehaviour
     protected float weaponCooldown = 0;
 
     [SerializeField]
-    protected float weaponRate = 0;
+    protected float weaponRate = 10;
 
     [SerializeField]
     protected float spray = 0;
+
+    [SerializeField]
+    protected float attackRange = 1;
 
     public abstract void Fire();
 
@@ -26,5 +29,10 @@ public abstract class Weapon : MonoBehaviour
     {
         GameObject bullet = Instantiate(bulletType, transform.position, transform.rotation);
         bullet.GetComponent<Bullet>().Initialise(transform.eulerAngles.z + Random.Range(-spray, spray));
+    }
+
+    public float GetAttackRange()
+    {
+        return attackRange;
     }
 }
