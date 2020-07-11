@@ -24,6 +24,9 @@ public class Enemy : MonoBehaviour
 
     protected float direction;
 
+    private Vector2 areaOfInterest;
+
+    private float searchDuration;
     protected virtual void PassiveState()
     {
         // Do nothing
@@ -43,11 +46,17 @@ public class Enemy : MonoBehaviour
         {
             state = State.Chasing;
         }
-        else
+        else if (state != State.Searching)
         {
-            state = State.Passive;
+            if (state == State.Chasing)
+            {
+                state = State.Searching;
+            }
+            else
+            {
+                state = State.Passive;
+            }
         }
-
 
         if (state == State.Passive)
         {
@@ -56,6 +65,10 @@ public class Enemy : MonoBehaviour
         else if(state == State.Chasing)
         {
             HostileState();
+        }
+        else if (state == State.Searching)
+        {
+            SearchingState();
         }
 
         UpdateViewCone();
@@ -95,6 +108,7 @@ public class Enemy : MonoBehaviour
         Vector2 player = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (Vector2.Distance(transform.position, player) < 1)
         {
+            areaOfInterest = player;
             return true;
         }
         if (Vector2.Distance(transform.position, player) > viewRange)
@@ -104,17 +118,43 @@ public class Enemy : MonoBehaviour
         float angleToPlayer = AngleToTarget(player);
         if (Mathf.Abs(Mathf.DeltaAngle(direction, angleToPlayer)) < (fieldOfView * 0.5f)) 
         {
+            areaOfInterest = player;
             return true;
         }
         return false;
     }
 
-    protected void FaceDirection(float target)
+    protected void SearchingState()
     {
-        direction = Mathf.MoveTowardsAngle(direction, target, rotationalSpeed);
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, direction));
+        if ((Vector2) transform.position == areaOfInterest)
+        {
+            if (searchDuration == 0)
+            {
+                searchDuration = 360 / (rotationalSpeed * 0.5f);
+            }
+            else if (searchDuration == 1)
+            {
+                searchDuration = 0;
+                state = State.Passive;
+                return;
+            }
+            searchDuration--;
+            FaceDirection(direction + 180, rotationalSpeed * 0.5f);
+            return;
+        }
+        MoveToPoint(areaOfInterest);
     }
 
+    protected void FaceDirection(float target)
+    {
+        FaceDirection(target, rotationalSpeed);
+    }
+
+    protected void FaceDirection(float target, float speed)
+    {
+        direction = Mathf.MoveTowardsAngle(direction, target, speed);
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, direction));
+    }
     protected void MoveToPoint(Vector2 target)
     {
         float angleToTarget = AngleToTarget(target);

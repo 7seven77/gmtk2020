@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   movementSpeed: 0.05
-  rotationalSpeed: 5
+  rotationalSpeed: 2
   viewRange: 18
   fieldOfView: 20
   attackRange: 5
@@ -790,7 +790,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   movementSpeed: 0.05
-  rotationalSpeed: 5
+  rotationalSpeed: 2
   viewRange: 10
   fieldOfView: 50
   attackRange: 6
