@@ -20,10 +20,8 @@ public class PatrollingEnemy : Enemy
         if ((Vector2) transform.position == patrolPath[currentPathPoint])
         {
             currentPathPoint = (currentPathPoint + 1) % patrolPath.Count;
+            print(currentPathPoint);
         }
-        else
-        {
-            transform.position = Vector2.MoveTowards(transform.position, patrolPath[currentPathPoint], movementSpeed);
-        }
+        MoveToPoint(patrolPath[currentPathPoint]);
     }
 }
