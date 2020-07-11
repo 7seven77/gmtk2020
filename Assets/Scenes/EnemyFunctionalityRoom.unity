@@ -323,7 +323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &496480177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,6 +421,7 @@ GameObject:
   m_Component:
   - component: {fileID: 877279345}
   - component: {fileID: 877279344}
+  - component: {fileID: 877279346}
   m_Layer: 0
   m_Name: RotatingEnemy
   m_TagString: Untagged
@@ -485,13 +486,33 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 877279343}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0, z: 0.9961947, w: -0.08715578}
   m_LocalPosition: {x: 12.82, y: -2.69, z: 0}
   m_LocalScale: {x: 10, y: 7, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 190}
+--- !u!114 &877279346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877279343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96860eafbe1cea645a01eb5332ef60ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  movementSpeed: 1
+  rotationalSpeed: 1
+  directionList:
+  - 45
+  - 180
+  - 270
+  turnPeriod: 1000
 --- !u!1 &2082057948
 GameObject:
   m_ObjectHideFlags: 0

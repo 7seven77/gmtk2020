@@ -14,10 +14,15 @@ public class Enemy : MonoBehaviour
     protected float rotationalSpeed = 1;
 
     protected float direction;
-    protected virtual void PassiveState()
+
+    private void Start()
     {
         // Sets direction to match where it was placed at the start of the game
         direction = transform.rotation.eulerAngles.z;
+    }
+    protected virtual void PassiveState()
+    {
+        // Do nothing
     }
 
     // Update is called once per frame
@@ -41,8 +46,6 @@ public class Enemy : MonoBehaviour
         float angleToTarget = Mathf.Atan2(v2.y, v2.x) * Mathf.Rad2Deg;
         if (angleToTarget == direction)
         {
-            print(transform.position);
-            print(target);
             transform.position = Vector2.MoveTowards(transform.position, target, movementSpeed);
         }
         else
