@@ -72,6 +72,8 @@ public class Enemy : MonoBehaviour
         }
 
         UpdateViewCone();
+
+        transform.GetComponentInChildren<Weapon>().transform.rotation = transform.rotation;
     }
 
     private void UpdateViewCone()
