@@ -35,11 +35,31 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        IsHostile();
+        if (IsHostile())
+        {
+            state = State.Chasing;
+        }
+        else
+        {
+            state = State.Passive;
+        }
+
+
         if (state == State.Passive)
         {
             PassiveState();
+        } 
+        else if(state == State.Chasing)
+        {
+            HostileState();
         }
+    }
+
+    protected void HostileState()
+    {
+        Vector2 player = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        print(player);
+        MoveToPoint(player);
     }
 
     protected bool IsHostile()
