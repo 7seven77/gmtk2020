@@ -21,15 +21,16 @@ public class Enemy : MonoBehaviour
 
     protected float direction;
 
-
-    private void Start()
-    {
-        // Sets direction to match where it was placed at the start of the game
-        direction = transform.rotation.eulerAngles.z;
-    }
     protected virtual void PassiveState()
     {
         // Do nothing
+    }
+
+    protected void Start()
+    {
+        // Sets direction to match where it was placed at the start of the game
+        direction = transform.rotation.eulerAngles.z;
+
     }
 
     // Update is called once per frame
@@ -54,6 +55,11 @@ public class Enemy : MonoBehaviour
             HostileState();
         }
 
+        UpdateViewCone();
+    }
+
+    private void UpdateViewCone()
+    {
         Transform cone = transform.Find("VisionCone");
         cone.GetChild(0).GetComponent<LineRenderer>().SetPosition(0,
             transform.localPosition);
@@ -64,7 +70,6 @@ public class Enemy : MonoBehaviour
         cone.GetChild(1).GetComponent<LineRenderer>().SetPosition(1,
             transform.localPosition + (AngleToVector(direction + (fieldOfView * 0.5f)) * viewRange));
     }
-
     protected static Vector3 AngleToVector(float direction)
     {
         float angle = direction * Mathf.Deg2Rad;
