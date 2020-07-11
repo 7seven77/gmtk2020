@@ -53,12 +53,27 @@ public class Enemy : MonoBehaviour
         {
             HostileState();
         }
+
+        Transform cone = transform.Find("VisionCone");
+        cone.GetChild(0).GetComponent<LineRenderer>().SetPosition(0,
+            transform.localPosition);
+        cone.GetChild(0).GetComponent<LineRenderer>().SetPosition(1,
+            transform.localPosition + (AngleToVector(direction - (fieldOfView * 0.5f)) * viewRange));
+        cone.GetChild(1).GetComponent<LineRenderer>().SetPosition(0,
+            transform.localPosition);
+        cone.GetChild(1).GetComponent<LineRenderer>().SetPosition(1,
+            transform.localPosition + (AngleToVector(direction + (fieldOfView * 0.5f)) * viewRange));
+    }
+
+    protected static Vector3 AngleToVector(float direction)
+    {
+        float angle = direction * Mathf.Deg2Rad;
+        return new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0);
     }
 
     protected void HostileState()
     {
         Vector2 player = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        print(player);
         MoveToPoint(player);
     }
 
@@ -70,7 +85,7 @@ public class Enemy : MonoBehaviour
             return false;
         }
         float angleToPlayer = AngleToTarget(player);
-        if ((angleToPlayer + fieldOfView) < (direction + (2 * fieldOfView)) && (angleToPlayer + fieldOfView) > (direction))
+        if (Mathf.DeltaAngle(direction, angleToPlayer) < (fieldOfView * 0.5f)) 
         {
             return true;
         }
