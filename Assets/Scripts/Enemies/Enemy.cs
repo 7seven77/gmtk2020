@@ -98,6 +98,10 @@ public class Enemy : MonoBehaviour
         if (Vector2.Distance(transform.position, player) < attackRange)
         {
             FaceDirection(AngleToTarget(player));
+            if (Mathf.Abs(Mathf.DeltaAngle(direction, AngleToTarget(player))) < 5)
+            {
+                transform.GetComponentInChildren<Weapon>().Fire();
+            }
             return;
         }
         MoveToPoint(player);
