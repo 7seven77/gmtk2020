@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
         // Do nothing
     }
 
-    protected void Start()
+    protected virtual void Start()
     {
         // Sets direction to match where it was placed at the start of the game
         direction = transform.rotation.eulerAngles.z;
