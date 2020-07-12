@@ -20,15 +20,12 @@ public class TakeOverTarget : MonoBehaviour
     {
         sr.color = Color.yellow;
         highlightSquare.SetActive(true);
-    }
-
-    private void OnMouseExit()
-    {
-        sr.color = Color.red;
+        highlightSquare.GetComponent<SpriteRenderer>().color = new Color(255, 0, 158);
     }
 
     public void TurnOffSquare() 
     {
+        sr.color = Color.white;
         highlightSquare.SetActive(false);
     }
 
